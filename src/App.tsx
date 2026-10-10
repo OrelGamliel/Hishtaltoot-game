@@ -7,20 +7,32 @@ import DuelScreen from './screens/DuelScreen';
 import WinnerScreen from './screens/WinnerScreen';
 import EditorScreen from './screens/EditorScreen';
 import ReviewScreen from './screens/ReviewScreen';
+import RemoteScreen from './screens/RemoteScreen';
+import { RemoteBridge } from './game/remoteBridge';
 
 /** Side views on top of the game, kept in the URL hash so a refresh returns to them. */
-type View = { name: 'game' } | { name: 'editor' } | { name: 'review'; packId: string };
+type View =
+  | { name: 'game' }
+  | { name: 'editor' }
+  | { name: 'review'; packId: string }
+  /** the phone page opened from the QR code */
+  | { name: 'remote'; token: string };
 
 function viewFromHash(): View {
   const h = decodeURIComponent(window.location.hash.replace(/^#\/?/, ''));
   if (h === 'editor') return { name: 'editor' };
   const m = /^review\/([a-z0-9-]+)$/.exec(h);
   if (m) return { name: 'review', packId: m[1] };
+  const r = /^remote\/([a-f0-9]+)$/.exec(h);
+  if (r) return { name: 'remote', token: r[1] };
   return { name: 'game' };
 }
 
 function hashFor(v: View): string {
-  return v.name === 'game' ? '' : v.name === 'editor' ? '#editor' : `#review/${v.packId}`;
+  if (v.name === 'game') return '';
+  if (v.name === 'editor') return '#editor';
+  if (v.name === 'remote') return `#remote/${v.token}`;
+  return `#review/${v.packId}`;
 }
 
 export default function App() {
@@ -45,6 +57,14 @@ export default function App() {
     setView(v);
   };
 
+  // The phone only renders the remote; it has no game of its own.
+  if (view.name === 'remote')
+    return (
+      <div className="arena-bg flex h-full flex-col">
+        <RemoteScreen token={view.token} />
+      </div>
+    );
+
   let screen;
   if (view.name === 'review') screen = <ReviewScreen packId={view.packId} onBack={() => go({ name: 'editor' })} />;
   else if (view.name === 'editor')
@@ -57,5 +77,9 @@ export default function App() {
   else if (state.phase === 'winner') screen = <WinnerScreen state={state} dispatch={dispatch} />;
   else screen = <BoardScreen state={state} dispatch={dispatch} />;
 
-  return <div className="arena-bg flex h-full flex-col">{screen}</div>;
+  return (
+    <RemoteBridge state={state}>
+      <div className="arena-bg flex h-full flex-col">{screen}</div>
+    </RemoteBridge>
+  );
 }

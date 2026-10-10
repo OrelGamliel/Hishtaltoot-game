@@ -9,6 +9,7 @@ import { sfx } from '../game/sounds';
 import Board from '../components/Board';
 import HistoryLog from '../components/HistoryLog';
 import { ConfirmButton, Modal, TopBar } from '../components/ui';
+import { useRemoteCommand } from '../game/remoteBridge';
 
 /** Delays (ms) between randomizer steps: fast at first, slowing to a stop. */
 function spinSchedule(): number[] {
@@ -71,6 +72,10 @@ export default function BoardScreen({ state, dispatch }: { state: GameState; dis
       }, at + 1400),
     );
   }, [spinning, turn.stage, alive, dispatch]);
+
+  useRemoteCommand((cmd) => {
+    if (cmd === 'spin' && !pending) spin();
+  });
 
   // Host shortcut: Space / Enter spins the randomizer.
   useEffect(() => {

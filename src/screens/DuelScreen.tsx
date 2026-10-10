@@ -6,6 +6,7 @@ import type { GameState, Player, Side } from '../game/types';
 import { textOn } from '../game/colors';
 import { sfx } from '../game/sounds';
 import { GlobalControls, Modal } from '../components/ui';
+import { useRemoteCommand } from '../game/remoteBridge';
 
 const TICK_MS = 100;
 
@@ -105,6 +106,11 @@ export default function DuelScreen({ state, dispatch }: { state: GameState; disp
     },
     [duel.status, count, flush, dispatch, overAt],
   );
+
+  // Buttons on the phone remote do exactly what the host keys do.
+  useRemoteCommand((cmd) => {
+    if (cmd !== 'spin') act(cmd);
+  });
 
   useEffect(() => {
     const h = (e: KeyboardEvent) => {

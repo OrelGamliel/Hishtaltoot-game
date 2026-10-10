@@ -5,6 +5,7 @@ import { readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { SOURCES, formatPack, imageBaseName, isValidPackId, packFileFromUrl, packFileUrl } from './pack-utils.mjs';
 import { downloadImage, resolveImage, saveDataUrl } from './sources.mjs';
+import { isLoopback } from './remote-utils.mjs';
 
 const MAX_BODY = 25 * 1024 * 1024;
 
@@ -149,6 +150,8 @@ export function devPackApi({ root }) {
         const name = (req.url ?? '').replace(/^\//, '').split('?')[0];
         const handler = Object.hasOwn(routes, name) ? routes[name] : null;
         if (!handler) return send(res, 404, { error: `Unknown endpoint ${name}` });
+        // The dev server also listens on Wi-Fi (for the phone remote); only this computer may edit packs.
+        if (!isLoopback(req.socket.remoteAddress)) return send(res, 403, { error: 'Pack editing is only allowed on this computer' });
         if (name !== 'ping' && req.method !== 'POST') return send(res, 405, { error: 'Use POST' });
         try {
           const body = name === 'ping' ? {} : await readBody(req);

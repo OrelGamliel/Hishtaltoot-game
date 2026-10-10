@@ -37,6 +37,16 @@ The previous answer flashes at the top after each correct or pass. Questions nev
 
 The history panel has **Undo last result**, which restores the board to just before the duel. It also has **Give last duel to the other player**, which reverses the result. Both work repeatedly, back through the last 50 duels.
 
+### Phone remote
+
+The host can see the answer and run the duel from a phone on the same Wi-Fi.
+
+1. Start the game with `npm run dev` and open it on this computer at `http://localhost:5173`.
+2. Press the 📱 button at the top and scan the QR code with the phone.
+3. The phone shows the current answer, the picture and both clocks, with big **Correct**, **Pass** and **Pause** buttons. It can also start the clock, continue after a duel and spin the randomizer.
+
+The dev server listens on the Wi-Fi address for this. Windows may ask once to let Node.js through the firewall; allow it on private networks. The QR link carries a random key that changes whenever the dev server restarts, so other devices on the network can't see the answers; after a restart, scan again. Pack editing stays limited to this computer. The relay is a dev-only Vite plugin in [scripts/lib/dev-remote.mjs](scripts/lib/dev-remote.mjs), so a static build has no phone remote.
+
 ## Question packs
 
 Built-in packs live in `public/packs/` and are listed in `public/packs/index.json`.

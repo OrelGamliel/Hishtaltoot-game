@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { useI18n } from '../i18n/i18n';
 import { isMuted, onMuteChange, setMuted } from '../game/sounds';
+import RemoteButton from './RemoteButton';
 
 export function Logo({ size = 'md' }: { size?: 'md' | 'lg' }) {
   const { t } = useI18n();
@@ -31,12 +32,13 @@ export function useMuted(): [boolean, (m: boolean) => void] {
   return [m, setMuted];
 }
 
-/** Language, sound and fullscreen toggles. */
+/** Phone remote, language, sound and fullscreen toggles. */
 export function GlobalControls() {
   const { t, lang, setLang } = useI18n();
   const [muted, setMute] = useMuted();
   return (
     <div className="flex items-center gap-2">
+      <RemoteButton />
       <button className="btn btn-ghost px-3" onClick={() => setLang(lang === 'he' ? 'en' : 'he')}>
         {t('language')}
       </button>

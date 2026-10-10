@@ -150,6 +150,28 @@ const en = {
   answerRequired: 'Enter an answer.',
   tmdbNoKey: 'TMDB needs TMDB_API_KEY set before "npm run dev".',
   filterPictures: 'Filter…',
+
+  // Phone remote
+  phoneRemote: 'Phone remote',
+  remoteTitle: 'Scan with your phone',
+  remoteHint: 'The phone must be on the same Wi-Fi. It shows the answer and works as the host remote.',
+  remoteNetwork: 'Network',
+  remotePhones: '{n} phones connected',
+  remoteNoAddress: 'No Wi-Fi address found. Check that this computer is connected to Wi-Fi.',
+  remoteFirewall: 'If the phone cannot open the page, allow Node.js through the Windows firewall (private networks).',
+  remoteConnecting: 'Connecting…',
+  remoteReconnecting: 'Connection lost, reconnecting…',
+  remoteBadToken: 'This link expired. Scan the QR code on the TV again.',
+  remoteNoTv: 'The game is not open on the TV.',
+  remoteWaiting: 'Waiting for a duel…',
+  remoteAnswer: 'Answer',
+  remoteNoQuestion: 'The question appears when the clock starts.',
+  remoteStart: 'Start clock',
+  remoteSpin: 'Spin',
+  remoteChoosing: '{name} is choosing an opponent',
+  remoteSpinNext: 'Next: spin the randomizer',
+  remoteWinnerChooses: '{name} won and chooses what is next',
+  remoteSetup: 'The game is being set up on the TV.',
 };
 
 export type TKey = keyof typeof en;
@@ -296,6 +318,27 @@ const he: Record<TKey, string> = {
   answerRequired: 'הזינו תשובה.',
   tmdbNoKey: 'כדי להשתמש ב־TMDB יש להגדיר TMDB_API_KEY לפני "npm run dev".',
   filterPictures: 'סינון…',
+
+  phoneRemote: 'שלט בטלפון',
+  remoteTitle: 'סרקו עם הטלפון',
+  remoteHint: 'הטלפון צריך להיות מחובר לאותה רשת Wi-Fi. הוא מציג את התשובה ומשמש כשלט של המנחה.',
+  remoteNetwork: 'רשת',
+  remotePhones: '{n} טלפונים מחוברים',
+  remoteNoAddress: 'לא נמצאה כתובת Wi-Fi. בדקו שהמחשב מחובר ל־Wi-Fi.',
+  remoteFirewall: 'אם הטלפון לא מצליח לפתוח את הדף, אשרו ל־Node.js לעבור בחומת האש של Windows (רשתות פרטיות).',
+  remoteConnecting: 'מתחבר…',
+  remoteReconnecting: 'החיבור נותק, מתחבר מחדש…',
+  remoteBadToken: 'הקישור פג תוקף. סרקו שוב את הקוד בטלוויזיה.',
+  remoteNoTv: 'המשחק לא פתוח בטלוויזיה.',
+  remoteWaiting: 'מחכים לדו־קרב…',
+  remoteAnswer: 'תשובה',
+  remoteNoQuestion: 'השאלה תופיע כשהשעון יתחיל.',
+  remoteStart: 'הפעלת השעון',
+  remoteSpin: 'הגרלה',
+  remoteChoosing: '{name}: בחירת יריב',
+  remoteSpinNext: 'הבא בתור: הגרלה',
+  remoteWinnerChooses: 'ניצחון ל־{name}, בחירה מה הלאה',
+  remoteSetup: 'המשחק בהגדרה בטלוויזיה.',
 };
 
 export const translations = { en, he };
