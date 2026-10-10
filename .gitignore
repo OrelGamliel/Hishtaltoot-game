@@ -1,0 +1,10 @@
+node_modules
+dist
+*.log
+
+# Downloaded pack pictures: third-party images (many need attribution, some are fair use only),
+# so they stay local. Rebuild them with: npm run build-pack -- --answers answers/<file>.txt ...
+public/packs/*/
+
+# Lists of answers the build script could not find a picture for
+*.missing.txt

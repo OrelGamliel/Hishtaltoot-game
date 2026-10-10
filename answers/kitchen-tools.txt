@@ -1,0 +1,44 @@
+# כלי מטבח
+# npm run build-pack -- --answers answers/kitchen-tools.txt --source wikipedia-he --id he-kitchen-tools
+# "answer | search term" searches for a different term; "en:" searches English Wikipedia.
+
+מחבת
+סיר
+מצקת
+מרית | מרית (כלי מטבח)
+מטרפה
+קולפן
+פומפייה
+מסננת
+קרש חיתוך
+סכין שף | סכין מטבח
+מערוך
+פותחן קופסאות
+חולץ פקקים | en:Corkscrew
+מלקחיים
+כף עץ
+קערת ערבוב | קערה
+כוס מדידה
+משקל מטבח | מאזניים
+מיקסר | מערבל מזון
+בלנדר
+מעבד מזון
+טוסטר | en:Toaster
+קומקום
+מיקרוגל | תנור מיקרוגל
+תנור
+תבנית אפייה
+תבנית מאפינס | en:Muffin tin
+מברשת אפייה | en:Pastry brush
+שק זילוף | זילוף
+מכתש ועלי
+מכבש שום | en:Garlic press
+מסחטת הדרים | מסחטה
+מטחנת פלפל | en:Pepper mill
+סיר לחץ
+ווק
+טיימר מטבח | טיימר ביצים
+מדחום בישול | מדחום
+מספריים למטבח | מספריים
+מכונת קפה
+פינג'אן
